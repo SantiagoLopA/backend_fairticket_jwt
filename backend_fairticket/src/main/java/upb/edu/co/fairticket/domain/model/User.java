@@ -19,19 +19,20 @@ public class User {
     private Role role;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
+    private String passwordHash;
 
-    public static User createBuyer(String name, Email email) {
-        return new User(UUID.randomUUID(), name, email, Role.BUYER, LocalDateTime.now(), LocalDateTime.now());
+    public static User createBuyer(String name, Email email,String passwordHash) {
+        return new User(UUID.randomUUID(), name, email, Role.BUYER, LocalDateTime.now(), LocalDateTime.now(), passwordHash);
     }
 
-    public static User createOrganizer(String name, Email email) {
+    public static User createOrganizer(String name, Email email, String passwordHash) {
         return new User(UUID.randomUUID(), name, email, Role.ORGANIZER,
-                LocalDateTime.now(), LocalDateTime.now());
+                LocalDateTime.now(), LocalDateTime.now(), passwordHash);
     }
 
-    public static User createAdmin(String name, Email email) {
+    public static User createAdmin(String name, Email email, String passwordHash) {
         return new User(UUID.randomUUID(), name, email, Role.ADMIN,
-                LocalDateTime.now(), LocalDateTime.now());
+                LocalDateTime.now(), LocalDateTime.now(), passwordHash);
     }
 
     public void updateProfile(String name, Email email) {

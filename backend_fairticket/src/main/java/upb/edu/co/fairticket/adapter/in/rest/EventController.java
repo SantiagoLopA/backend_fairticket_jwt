@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 import upb.edu.co.fairticket.adapter.in.rest.dto.request.CreateEventRequest;
 import upb.edu.co.fairticket.adapter.in.rest.dto.response.EventResponse;
 import upb.edu.co.fairticket.domain.usecase.event.CreateEventUseCase;

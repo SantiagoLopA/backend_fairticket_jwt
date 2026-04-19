@@ -20,23 +20,17 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class UserController {
 
-    private final RegisterUserUseCase registerUserUseCase;
     private final ListUserUseCase listUserUseCase;
     private final DeleteUserUseCase deleteUserUseCase;
     private final ModifyUserUseCase modifyUserUseCase;
 
-    @PostMapping
-    public ResponseEntity<UserResponse> register(@RequestBody RegisterUserRequest request) {
-        var user = switch (request.role().toUpperCase()) {
-            case "ORGANIZER" -> registerUserUseCase.registerOrganizer(request.name(), request.email());
-            default -> registerUserUseCase.registerBuyer(request.name(), request.email());
-        };
-        return ResponseEntity.status(HttpStatus.CREATED).body(UserResponse.from(user));
-    }
-
     @GetMapping
     public ResponseEntity<List<UserResponse>> list() {
-        return ResponseEntity.ok(listUserUseCase.execute().stream().map(UserResponse::from).toList());
+        return ResponseEntity.ok(
+            listUserUseCase.execute().stream()
+                .map(UserResponse::from)
+                .toList()
+        );
     }
 
     @PutMapping("/{id}")
