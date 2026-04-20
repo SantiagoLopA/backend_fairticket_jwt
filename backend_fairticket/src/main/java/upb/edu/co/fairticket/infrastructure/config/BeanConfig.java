@@ -18,6 +18,7 @@ import upb.edu.co.fairticket.domain.usecase.ticket.CancelTicketUseCase;
 import upb.edu.co.fairticket.domain.usecase.ticket.GetTicketsUseCase;
 import upb.edu.co.fairticket.domain.usecase.user.DeleteUserUseCase;
 import upb.edu.co.fairticket.domain.usecase.user.ListUserUseCase;
+import upb.edu.co.fairticket.domain.usecase.user.LoginUseCase;
 import upb.edu.co.fairticket.domain.usecase.user.ModifyUserUseCase;
 import upb.edu.co.fairticket.domain.usecase.user.RegisterUserUseCase;
 
@@ -28,6 +29,11 @@ public class BeanConfig {
     @Bean
     public RegisterUserUseCase registerUserUseCase(UserRepository userRepository, PasswordProtector passwordProtector) {
     return new RegisterUserUseCase(userRepository, passwordProtector);
+    }
+
+    @Bean
+    public LoginUseCase loginUseCase(UserRepository userRepository, PasswordProtector passwordProtector) {
+        return new LoginUseCase(userRepository, passwordProtector);
     }
 
     @Bean

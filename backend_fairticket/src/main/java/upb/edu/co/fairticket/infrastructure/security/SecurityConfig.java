@@ -24,9 +24,10 @@ public class SecurityConfig {
             .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers("/api/gateway/**").permitAll()
-                .requestMatchers("POST", "/api/events/**").hasRole("ORGANIZER")
-                .requestMatchers("PUT", "/api/events/**").hasRole("ORGANIZER")
-                .requestMatchers("DELETE", "/api/events/**").hasRole("ORGANIZER")
+                .requestMatchers(HttpMethod.POST, "/api/events/**").hasRole("ORGANIZER")
+                .requestMatchers(HttpMethod.PUT, "/api/events/**").hasRole("ORGANIZER")
+                .requestMatchers(HttpMethod.DELETE, "/api/events/**").hasRole("ORGANIZER")
+
                 .anyRequest().authenticated()
             )
             .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
