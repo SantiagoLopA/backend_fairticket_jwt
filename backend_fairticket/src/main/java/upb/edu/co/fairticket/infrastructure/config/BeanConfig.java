@@ -3,6 +3,7 @@ package upb.edu.co.fairticket.infrastructure.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import upb.edu.co.fairticket.domain.port.EventRepository;
+import upb.edu.co.fairticket.domain.port.PasswordProtector;
 import upb.edu.co.fairticket.domain.port.PurchaseRepository;
 import upb.edu.co.fairticket.domain.port.TicketRepository;
 import upb.edu.co.fairticket.domain.port.UserRepository;
@@ -25,8 +26,8 @@ public class BeanConfig {
 
     // User Use Cases
     @Bean
-    public RegisterUserUseCase registerUserUseCase(UserRepository userRepository) {
-        return new RegisterUserUseCase(userRepository);
+    public RegisterUserUseCase registerUserUseCase(UserRepository userRepository, PasswordProtector passwordProtector) {
+    return new RegisterUserUseCase(userRepository, passwordProtector);
     }
 
     @Bean

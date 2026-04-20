@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
+import upb.edu.co.fairticket.infrastructure.security.JwtService;
 import upb.edu.co.fairticket.adapter.in.rest.dto.request.LoginRequest;
 import upb.edu.co.fairticket.adapter.in.rest.dto.request.RegisterUserRequest;
 import upb.edu.co.fairticket.adapter.in.rest.dto.response.AuthResponse;

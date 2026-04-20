@@ -1,6 +1,5 @@
 package upb.edu.co.fairticket.infrastructure.security;
 
-
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
@@ -8,7 +7,8 @@ import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import upb.edu.co.fairticket.domain.model.User;
-import java.security.Key;
+
+import javax.crypto.SecretKey;
 import java.util.Date;
 
 @Service
@@ -20,7 +20,7 @@ public class JwtService {
     @Value("${token.jwt.expiration}")
     private long expiration;
 
-    private Key getSigningKey() {
+    private SecretKey getSigningKey() {
         return Keys.hmacShaKeyFor(secret.getBytes());
     }
 

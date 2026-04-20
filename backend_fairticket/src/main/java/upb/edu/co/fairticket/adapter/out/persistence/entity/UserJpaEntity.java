@@ -26,6 +26,9 @@ public class UserJpaEntity {
     @Column(unique = true)
     private String email;
 
+    @Column(name = "password_hash")
+    private String passwordHash;
+
     @Enumerated(EnumType.STRING)
     private Role role;
 
