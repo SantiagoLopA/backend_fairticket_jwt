@@ -1,4 +1,7 @@
+version: '3.8'
+
 services:
+
   postgres:
     image: postgres:17-alpine
     container_name: fairticket-db
@@ -10,6 +13,20 @@ services:
       POSTGRES_PASSWORD: mysecretpassword
     volumes:
       - fairticket-data:/var/lib/postgresql/data
+
+  app:
+    build: .
+    container_name: fairticket-app
+    depends_on:
+      - postgres
+    ports:
+      - "6001:6001"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/fairticket
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: mysecretpassword
+      TOKEN_JWT_SECRET: super_secret_key_que_debe_ser_larga_y_segura_123456
+      TOKEN_JWT_EXPIRATION: 3600000
 
 volumes:
   fairticket-data:
